@@ -1,0 +1,40 @@
+{% extends "baseTemplate.html" %}
+{% from "_formHelpers.html" import render_field %}
+{% block title %} {{ title }} {% endblock %}
+{% block maincontent %}
+<p>
+  Listar alla som hör till det nyhetsbrevet: <strong>{{ currentLetter.title }}</strong> med <strong>ID: {{ currentLetter.id }}</strong>
+</p>
+<p>
+  Detta nyhetsbrevet har skickats ut <strong> {{ newsLetterCount }}</strong> gånger.
+</p>
+
+<table class="table border border-secondary border-2">
+  <thead class="customThead">
+    <tr>
+      <th scope="col">
+        <i class="bi bi-123"></i>
+        Id</th>
+      <th scope="col">
+        <i class="bi bi-envelope"></i>
+        Email</th>
+      <th scope="col">
+        <i class='bx bx-calendar-alt' ></i>
+        Date Sent</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for Newsletter, NewsletterInfo, SignupsNewsletter in letters %}
+    <tr>
+      <td><strong>{{ SignupsNewsletter.id }}</strong></td>
+      <td><a href="#">{{ SignupsNewsletter.email }}</a></td>
+      <td>{{ NewsletterInfo.dateSent }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock %}
+

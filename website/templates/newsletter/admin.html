@@ -1,0 +1,59 @@
+{% extends "baseTemplate.html" %}
+{% from "_formHelpers.html" import render_field %}
+{% block title %} {{ title }} {% endblock %}
+{% block maincontent %}
+<nav class="d-flex justify-content-center">
+  <div class="buttonGroup">
+      <div class="wrapper">
+        <a class="animationButton" href="{{ url_for('newsletter.adminNewsletter') }}"><span>Newsletters</span></a>
+      </div>
+      <div class="wrapper">
+        <a class="animationButton" href="#"><span>Products</span></a>
+      </div>
+      <div class="wrapper">
+        <a class="animationButton" href="{{ url_for('newsletter.gdpr') }}"><span>GDPR</span></a>
+      </div>
+  </div>
+</nav>
+<br/>
+<br/>
+<div class="javascriptLove">
+</div>
+<br/>
+<div class="lorem">
+</div>
+
+<script>
+  "use strict";
+
+  const generateLoremList = function(string){
+    let loremText = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut pariatur eos voluptates expedita veniam deleniti, error exercitationem quia quidem dolore doloremque delectus aperiam voluptas in quibusdam non quasi omnis natus, veritatis perspiciatis enim saepe beatae. Odit voluptates tempore voluptate odio ipsum similique dolor labore accusantium ratione modi veniam, magnam libero nobis ea suscipit quis quos, tenetur aliquid molestias architecto? Necessitatibus voluptatem doloribus iure, nisi, dignissimos earum perspiciatis et error nesciunt a iusto quasi dolores aut voluptatibus in quae aspernatur! Et error voluptate adipisci minus fugit dolorum cumque autem molestias vitae perferendis temporibus delectus atque quisquam dolore ducimus aliquam, asperiores esse?"
+    const loremList = loremText.split(" ");
+    return loremList
+  }
+
+  const sleep = (milliseconds) => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+  }
+
+  const skapaText = async function(arr) {
+    javascriptLove();
+
+    for(let i = 0; i < arr.length; i++){
+      document.querySelector(".lorem").textContent += arr[i] + " ";
+      await sleep(20);
+    }
+  }
+
+  const javascriptLove = function() {
+    const addDiv = document.querySelector(".javascriptLove").textContent = '🎉 Welcome to the team champ! 🎉';
+  }
+
+  const loremList = generateLoremList();
+  // console.log(loremList);
+  skapaText(loremList);
+
+
+</script>
+
+{% endblock %}

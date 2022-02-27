@@ -1,0 +1,33 @@
+{% extends "baseTemplate.html" %}
+{% from "_formHelpers.html" import render_field %}
+{% block title %} {{ title }} {% endblock %}
+{% block maincontent %}
+
+<div class="card border border-secondary border-2">
+
+    <div class="card-header"> 
+        <h3 class="h3newsLetter"> {{ newsletter.title }} </h3>
+    </div>
+
+    <div class="card-body">
+        <form method="post">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+
+                {{ render_field(form.title) }}
+                {{ render_field(form.text) }}
+
+                <div class="form-group">
+                    <div class="buttons">
+                        {{ form.submit(class="btn btn-danger buttonCustom newLetterButton") }}
+                    </div>
+                </div>
+
+            </fieldset>
+
+        </form>
+    </div>
+        
+</div>
+
+{% endblock %}
