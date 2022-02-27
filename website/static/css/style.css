@@ -2190,7 +2190,7 @@ textarea.input {
   font: 13px/23px 'Poppins', sans-serif;
   color: #303336;
   padding: 40px 0;
-  box-shadow: 10px 5px 5px grey;
+  box-shadow: 10px 5px 5px rgba(241, 52, 52, 0.158);
 }
 
 .productcontainer {
@@ -2208,7 +2208,7 @@ textarea.input {
   left: 35%;
   color: white;
   text-align: center;
-  background: rgba(0, 153, 255, 0.8);
+  background: rgba(255, 0, 21, 0.8);
   border-radius: 50%;
   padding: 19px 33px;
   font-size: 22px;
@@ -2568,4 +2568,32 @@ body {
 
 .buttonz a:hover {
   color: black;
+}
+
+.stock_level_green {
+  color: green;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+.stock_level_orange {
+  color: orange;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+.stock_level_red {
+  color: #D10024;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+.active i {
+  color: #D10024;
 }

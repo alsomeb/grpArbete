@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from .services import getCategory, getTrendingCategories, getProduct, getTrendingProducts
+from .services import getCategory, getTrendingCategories, getProduct, getLatestTrendingProducts, getTrendingProductsByName, getTrendingProductsByPriceHigh,getTrendingProductsByPriceLow
 from flask_user import roles_accepted, roles_required, current_user
 from website.areas.newsletter.forms import Newsletters
 import flask_login
@@ -16,9 +16,18 @@ def index() -> str:
     #HÄR HIDE NEWSLETTER
     trendingCategories = []
     trendingCategories = getTrendingCategories()
-    trendingProducts = getTrendingProducts()
+    latestTrendingProducts = getLatestTrendingProducts()
+    sort = request.args.get('sort', 'latest')
+
+    if sort == 'Name':
+        latestTrendingProducts = getTrendingProductsByName()
+    elif sort == 'priceHigh':
+        latestTrendingProducts = getTrendingProductsByPriceHigh()
+    elif sort == 'priceLow':
+        latestTrendingProducts = getTrendingProductsByPriceLow()
+
     return render_template('products/index.html',trendingCategories=trendingCategories,
-        products=trendingProducts
+        products=latestTrendingProducts
     )
 
 

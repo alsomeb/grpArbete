@@ -13,7 +13,7 @@
                  </div>
                 <div class="shop-body">
                     <h3>{{ cat.CategoryName }}<br>Collection</h3>
-                    <a href="{{ url_for('product.category', id=cat.CategoryID)  }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{ url_for('product.category', id=cat.CategoryID) }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div>
@@ -31,10 +31,18 @@
                         <h3 class="title">Hot products</h3>
                         <div class="section-nav">
                             <ul class="section-tab-nav tab-nav">
-                                <li class="active"><a data-toggle="tab" href="#tab1">Latest</a></li>
-                                <li><a data-toggle="tab" href="#tab1">Price</a></li>
-                                <li><a data-toggle="tab" href="#tab1">Name</a></li>
-                                <li><a data-toggle="tab" href="#tab1">Asc</a></li>
+                                <li class="active"><a href="{{ url_for('product.index', sort='Latest') }}">
+                                    <i class='bx bx-calendar-alt' ></i>
+                                    Latest</a></li>
+                                <li><a href="{{ url_for('product.index', sort='Name') }}">
+                                    <i class='bx bx-sort-a-z'></i>
+                                    Name</a></li>
+                                <li><a href="{{ url_for('product.index', sort='priceHigh') }}">
+                                    <i class='bx bx-dollar' ></i>
+                                    Price Highest</a></li>
+                                <li><a href="{{ url_for('product.index', sort='priceLow') }}">
+                                    <i class='bx bx-dollar' ></i>
+                                    Price Lowest</a></li>
                             </ul>
                         </div>
                     </div>
@@ -57,8 +65,23 @@
             
                                 <div class="name">{{ product.ProductName }}</div>
             
-                                <div class="store">@Model.Color, @Model.Color</div>
-            
+                                <div class="store">{{ product.QuantityPerUnit }}</div>
+                                {% if product.UnitsInStock > 10 %}
+                                    <div class="stock_level_green"> 
+                                        <i class='bx bx-package'></i>
+                                        +{{ product.UnitsInStock }} kvar
+                                    </div>
+                                {% elif product.UnitsInStock > 0 and product.UnitsInStock < 10 %}
+                                    <div class="stock_level_orange">
+                                        <i class='bx bx-package'></i>
+                                        +{{ product.UnitsInStock }} kvar
+                                    </div>
+                                {% else %}
+                                    <div class="stock_level_red"> 
+                                        <i class='bx bx-package'></i>
+                                        {{ product.UnitsInStock }} tillfälligt slut
+                                    </div>
+                                {% endif %}
                                 <a href="#" class="button">Purchase Product</a>
             
                             </div> <!-- end information -->

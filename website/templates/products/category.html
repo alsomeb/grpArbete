@@ -41,8 +41,23 @@
             
                                 <div class="name">{{ product.ProductName }}</div>
             
-                                <div class="store">@Model.Color, @Model.Color</div>
-            
+                                <div class="store">{{ product.QuantityPerUnit }}</div>
+                                {% if product.UnitsInStock > 10 %}
+                                    <div class="stock_level_green"> 
+                                        <i class='bx bx-package'></i>
+                                        +{{ product.UnitsInStock }} kvar
+                                    </div>
+                                {% elif product.UnitsInStock > 0 and product.UnitsInStock <= 10 %}
+                                    <div class="stock_level_orange">
+                                        <i class='bx bx-package'></i>
+                                        +{{ product.UnitsInStock }} kvar
+                                    </div>
+                                {% else %}
+                                    <div class="stock_level_red"> 
+                                        <i class='bx bx-package'></i>
+                                        {{ product.UnitsInStock }} tillfälligt slut
+                                    </div>
+                                {% endif %}
                                 <a href="#" class="button">Purchase Product</a>
             
                             </div> <!-- end information -->
